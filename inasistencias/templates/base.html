@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RDFvevo</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{STATIC_URL}}css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{{STATIC_URL}}css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{STATIC_URL}}css/sb-admin-2.css" rel="stylesheet">
+    
+    <!-- Tema JQuery CSS -->
+    <link href="{{STATIC_URL}}css/overcast/jquery-ui.css" rel="stylesheet">
+
+    <!-- Nuestro CSS -->
+    <link href="{{STATIC_URL}}paneles.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{{STATIC_URL}}font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
+    <link href="{{STATIC_URL}}css/jquery.dataTables.min.css" rel="stylesheet">
+    
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+	    <div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		    <span class="sr-only"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		    <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">{{ usuario.username.capitalize }}</a>
+	    </div>
+	    <!-- /.navbar-header -->
+
+	    <div class="navbar-default sidebar" role="navigation">
+		<div class="sidebar-nav navbar-collapse">
+		    <ul class="nav" id="side-menu">
+			<li>
+			    <a href="{% url 'inasistencias:home' %}"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
+			</li>
+			<li>
+			    <a href="{% url 'inasistencias:desloguearse' %}"><i class="fa fa-sign-out fa-fw"></i>Salir</a>
+			</li>
+		    </ul>
+		</div>
+	    </div>
+	</nav>
+    
+    {% block contenido %}{% endblock %}
+    
+    </div>
+    
+    <!-- jQuery Version 1.11.0 -->
+    <script src="{{STATIC_URL}}js/jquery-1.11.0.js"></script>
+    
+    <!-- jQueryUi Version 1.8 -->
+    <script src="{{STATIC_URL}}js/jquery-ui.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{STATIC_URL}}js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="{{STATIC_URL}}js/plugins/metisMenu/metisMenu.min.js"></script>
+    
+    <script src="{{STATIC_URL}}js/jquery.dataTables.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="{{STATIC_URL}}js/sb-admin-2.js"></script>
+    
+    <script type="text/javascript">
+	$('input[type="date"]').prop('type','text');
+	$.datepicker.regional['es'] = {
+	    closeText: 'Cerrar',
+	    prevText: '<Ant',
+	    nextText: 'Sig>',
+	    currentText: 'Hoy',
+	    monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+	    monthNamesShort: ['Ene','Feb','Mar','Abr', 'May','Jun','Jul','Ago','Sep', 'Oct','Nov','Dic'],
+	    dayNames: ['Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado'],
+	    dayNamesShort: ['Dom','Lun','Mar','Mie','Juv','Vie','Sab'],
+	    dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+	    weekHeader: 'Sm',
+	    dateFormat: 'dd/mm/yy',
+	    firstDay: 1,
+	    maxDate: '0',
+	    beforeShowDay: $.datepicker.noWeekends,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: ''
+	};
+	
+	$.datepicker.setDefaults($.datepicker.regional['es']);
+	
+	$(function () {
+	    $("#fecha").datepicker();
+	    $("#fecha2").datepicker();
+	    $("#fecha3").datepicker();
+	});
+	
+	// Tabla de alumnos
+	$(document).ready(function() {
+	    $('#tabla').dataTable( {
+		"bPaginate": false,
+		"bInfo": false,
+		"oLanguage": {
+		    "sSearch": "Filtrar:",
+		},
+	    } );
+	} );
+    </script>
+</body>
+
+</html>
